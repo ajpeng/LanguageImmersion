@@ -3,10 +3,21 @@
   "manifest_version": 2,
   "name": "Immersion",
   "version": "1.0",
+  "homepage_url": "http://ajpeng.me",
 
   "icons": {
     "48": "icons/48.png",
     "96": "icons/96.png"
+  },
+
+  "permissions": [
+    "activeTab"
+  ],
+
+  "browser_action": {
+    "default_icon": "icons/32.png",
+    "default_title": "Immersion",
+    "default_popup": "immersion.html"
   },
 
   "content_scripts": [
