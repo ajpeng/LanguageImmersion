@@ -1,8 +1,19 @@
+document.body.style.border = "5px solid red";
 
+var body = document.getElementsByTagName('p');
 
+console.log("This is an element of type " , body.nodeType );
+var i;
+
+for(i = 0 ; i < body.length ; i++){
+    console.log(body[i].innerHTML);
+}
+
+/// Translate API calls
+/*
 function doGet(e) {
 
-    var sourceText = ''
+    var sourceText = 'dog'
     if (e.parameter.q) {
         sourceText = e.parameter.q;
     }
@@ -17,11 +28,11 @@ function doGet(e) {
         targetLang = e.parameter.target;
     }
 
-    /* Option 1 */
+    // Option 1 
 
     var translatedText = LanguageApp.translate(sourceText, sourceLang, targetLang)
 
-    /* Option 2 */
+    // Option 2 
 
     var url = "https://translate.googleapis.com/translate_a/single?client=gtx&sl="
               + sourceLang + "&tl=" + targetLang + "&dt=t&q=" + encodeURI(sourceText);
@@ -46,3 +57,4 @@ function doGet(e) {
              .createTextOutput(callback + '(' + JSON.stringify(json) + ')')
              .setMimeType(ContentService.MimeType.JAVASCRIPT);
 }
+*/

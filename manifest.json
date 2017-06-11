@@ -10,21 +10,16 @@
     "96": "icons/96.png"
   },
 
-  "permissions": [
-    "activeTab"
+ "content_scripts": [
+    {
+      "matches": ["*://*.mozilla.org/*"],
+      "js": ["/content_scripts/immersion.js" , "choose_lang.js"]
+    }
   ],
 
   "browser_action": {
     "default_icon": "icons/32.png",
     "default_title": "Immersion",
     "default_popup": "immersion.html"
-  },
-
-  "content_scripts": [
-    {
-      "matches": [ "*://*.mozilla.org/*" ],
-      "js": [ "immersion.js" ]
-    }
-  ]
-
+  }
 }
