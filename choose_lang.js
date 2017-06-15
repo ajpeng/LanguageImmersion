@@ -1,27 +1,35 @@
-function saveOptions(e){
-	e.preventDefault();
+function saveOptions(){
+	//console.log('save option');
+	//e.preventDefault();
 	var is_enabled = document.getElementById('enable');
 	var translate_frequency = document.getElementById('translate_frequency').value;
 	//var translateText = document.getElementById('words').value;
 	if(document.getElementById('translate_frequency').value > 100){
-		translate_frequency = document.getElementById('translate_frequency').max;
-	}
+		var translate_frequency = document.getElementById('translate_frequency').max;
+	} else {var translate_frequency = document.getElementById('translate_frequency').value;}
 
 	var language_original = document.getElementById('original').value;
 	var language_translated = document.getElementById('translated').value;
 	var allow_hyperlink = document.getElementById('hyperlink').value;
 
-	document.getElementById("save_settings").onclick = function(){
-		document.getElementById("update").innerHTML = "Settings updated";
-	}
+	//var status = document.getElementById("status"); 
+	//status.textContent = "Settings updated";
+	document.getElementById("status").innerHTML = "Settings saved.";
+	
 	browser.storage.local.set({
 		save_is_enabled : is_enabled,
 		save_translate_frequency : translate_frequency,
 		save_language_original : language_original,
 		save_language_translated : language_translated,
 		save_allow_hyperlink : allow_hyperlink	
-	})
+	});
+	
 }
+
+/*function saveOptions(){
+	document.getElementById("status").innerHTML = "Settings saved.";
+}
+*/
 
 function restoreOptions() {
 
@@ -37,26 +45,7 @@ function restoreOptions() {
   getting.then(setCurrentChoice, onError);
 }
 
-document.addEventListener("DOMContentLoaded", restoreOptions);
-document.querySelector("form").addEventListener("submit", saveOptions);
-
-/*
-document.getElementById("save").addEventListener("click", function(){
-	var paragraph = document.getElementByTagName("p");
-	var i;
-	for(i = 0 ; i < paragraph.length() ; i++){
-		paragraph[i].innerHTML = "TESTING123";
-	}
-});
-*/
-/*
-document.addEventListener("click" , (e) => {
-	if (e.target.classList.contains("save")){
-		browser.tabs.executeScreipt(null, {file: "content_scripts/immersion.js"});
-
-		var gettingActiveTab = browser.tabs.query({active: true , currentWindow: true});
-		gettingActiveTab.then(())
-	}
-});
-
-*/
+//document.getElementById('status').innerHTML = 'PLEASE';
+//document.addEventListener("DOMContentLoaded", restoreOptions);
+//	document.getElementById("status").innerHTML = "Hello";
+document.getElementById('save').addEventListener('click', saveOptions);

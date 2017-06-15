@@ -12,7 +12,7 @@ for(i = 0 ; i < body.length ; i++){
 /// Translate API calls
 /*
 function doGet(e) {
-
+ 
     var sourceText = 'dog'
     if (e.parameter.q) {
         sourceText = e.parameter.q;
