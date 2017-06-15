@@ -4,9 +4,13 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="style.css" />
 </head>
-<body>  
-	Enabled 
-	<input type="checkbox" id="enable" value="1" style="float: right;"> 
+<body> 
+<div> 
+	 <label>
+	 	<input type="checkbox" id="enable" value="1" style="float: right;"> Enabled
+	 	<a> </a>
+	 </label>
+	
 <hr>
 	<select class="original">
 		<option value="es">Spanish</option>
@@ -27,15 +31,18 @@
 		<option value="sv">Swedish</option>
 		<option value="it">Italian</option>
 	</select>
-	<br/>
-	<br/>
-	Low 
-		<input type="range" id="range" value="">
-	High
-	<br/>
-	<br/>
-	<input type="submit" class="button save" id="save_settings" value="Save">
+	<br><br>
+	0 
+		<input type="range" id="translate_frequency" value="">
+	100%
+	<br><br>
+	<input type="checkbox" id="hyperlink" value="1" style="float: right;"> 
+	Disable translation on text with <a href="#" >hyperlinks </a>. 
+
+	<br><br>
+	<input type="submit" class="button save" id="submit" value="Save">
 	<p id="update"> <font color="red"></font></p>
+</div>
 		<script src="choose_lang.js"></script> 
 </body>
 <!--<script src="content_scripts/immersion.js"></script> -->
