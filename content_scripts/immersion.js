@@ -1,4 +1,5 @@
 document.body.style.border = "5px solid red";
+/*
 
 var body = document.getElementsByTagName('p');
 
@@ -10,7 +11,6 @@ for(i = 0 ; i < body.length ; i++){
 }
 
 /// Translate API calls
-/*
 function doGet(e) {
  
     var sourceText = 'dog'
