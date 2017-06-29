@@ -4,6 +4,20 @@ function SelectElement(valueToSelect)
     element.value = valueToSelect;
 }
 
+function clearOptions(){
+	function onCleared() {
+  		console.log("Options Clear");
+	}
+
+	function onError(e) {
+		console.log(e);
+	}
+
+	var clearStorage = browser.storage.local.clear();
+	clearStorage.then(onCleared, onError);
+}
+
+
 function getLangName(code){
 	if(code === "af"){return "Afrikaans";}
 	if(code === "sq"){return "Albanian";}
@@ -99,16 +113,24 @@ function saveOptions(){
 	//window.alert("hyperlink: " + allow_hyperlink); 
 	//var status = document.getElementById("status"); 
 	//status.textContent = "Settings updated";
-	document.getElementById("status").innerHTML = "Settings saved.";
 
-	let settings = browser.storage.local.set({
+	clearOptions();
+
+	let preferences = {
 		save_is_enabled : is_enabled,
 		save_translate_frequency : translate_frequency,
 		save_language_original : language_original,
 		save_language_translated : language_translated,
 		save_allow_hyperlink : allow_hyperlink	
-	});
-	console.log("saveOptions" + JSON.stringify(settings));
+	};
+
+	console.log("saveOptions" + JSON.stringify(preferences));
+
+	let settings = browser.storage.local.set({preferences});
+
+	//console.log("saveOptions" + JSON.stringify(settings));
+
+	document.getElementById("status").innerHTML = "Settings saved.";
 	//settings.then(objectify(this), onError);
 	//window.alert(settings);
 }
@@ -158,6 +180,7 @@ function saveOptions(){
 }
 */
 
+/*
 function restoreOptions() {
   // Use default value languageTo = 'fr'
   browser.storage.sync.get({
@@ -172,6 +195,26 @@ function restoreOptions() {
     document.getElementById('translate_frequency').value = item.translate_frequency;
     document.getElementById('languageTo').checked = item.allow_hyperlink;
   });
+}*/
+
+function restoreOptions() {
+	function onGot(item){
+		console.log("restoreOptions: " + JSON.stringify(item));
+		//var objParsed = JSON.parse(item);
+		//console.log("parsed: " + objParsed);
+		document.getElementById('enable').checked = item.preferences.save_is_enabled;
+    	document.getElementById('original').value = item.preferences.save_language_original;
+   	 	document.getElementById('translated').value = item.preferences.save_language_translated;
+    	document.getElementById('translate_frequency').value = item.preferences.translate_frequency;
+   		document.getElementById('hyperlink').checked = item.preferences.allow_hyperlink;
+	}
+
+	function onError(error){
+		console.log(`Error: ${error}`);
+	}
+
+	let gettingItem = browser.storage.local.get();
+	gettingItem.then(onGot , onError);
 }
 
 
