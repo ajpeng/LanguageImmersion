@@ -1,3 +1,11 @@
+var debugMode = false;
+
+function log(s){
+    if(debugMode){
+        console.log(s);
+    }
+}
+
 function SelectElement(valueToSelect)
 {    
     var element = document.getElementById('leaveCode');
@@ -87,7 +95,7 @@ function getLangName(code){
 
 function saveOptions(){
 	function onError(error) {
-		console.log(`Error: ${error}`);
+		log(`Error: ${error}`);
 	}
 
 	function objectify(obj){
@@ -95,7 +103,7 @@ function saveOptions(){
 		window.alert(str);
 		return str;
 	}
-	//console.log('save option');
+	//log('save option');
 	//e.preventDefault();
 	var is_enabled = document.getElementById('enable').checked;
 	var translate_frequency = document.getElementById('translate_frequency').value;
@@ -124,11 +132,11 @@ function saveOptions(){
 		save_allow_hyperlink : allow_hyperlink	
 	};
 
-	console.log("saveOptions" + JSON.stringify(preferences));
+	log("saveOptions" + JSON.stringify(preferences));
 
 	let settings = browser.storage.local.set({preferences});
 
-	//console.log("saveOptions" + JSON.stringify(settings));
+	//log("saveOptions" + JSON.stringify(settings));
 
 	document.getElementById("status").innerHTML = "Settings saved.";
 	//settings.then(objectify(this), onError);
@@ -139,7 +147,7 @@ function saveOptions(){
 /* function restoreOptions() {
 
   function onGot(item){
-  	console.log("onGot: ");//+JSON.stringify(item));
+  	log("onGot: ");//+JSON.stringify(item));
   //} // onGot closign also remove this for <-->
   	/*	RETURNS THE FOLLOWING
   	{"save_is_enabled":false,"save_translate_frequency":"50","save_language_original":"es","save_language_translated":"es","save_allow_hyperlink":false}
@@ -154,11 +162,11 @@ function saveOptions(){
 
   function onError(error) {
   	window.alert('error occured');
-    console.log(`Error: ${error}`);
+    log(`Error: ${error}`);
   }
 
   function setUp(item){
-  	console.log("setUp");
+  	log("setUp");
   	//if(item.save_is_enabled == true){
 	  		document.getElementById('enable').checked = true;
   	//	} else { document.getElementById('enable').checked = false; }
@@ -199,9 +207,9 @@ function restoreOptions() {
 
 function restoreOptions() {
 	function onGot(item){
-		console.log("restoreOptions: " + JSON.stringify(item));
+		log("restoreOptions: " + JSON.stringify(item));
 		//var objParsed = JSON.parse(item);
-		//console.log("parsed: " + objParsed);
+		//log("parsed: " + objParsed);
 		document.getElementById('enable').checked = item.preferences.save_is_enabled;
     	document.getElementById('original').value = item.preferences.save_language_original;
    	 	document.getElementById('translated').value = item.preferences.save_language_translated;
@@ -210,7 +218,7 @@ function restoreOptions() {
 	}
 
 	function onError(error){
-		console.log(`Error: ${error}`);
+		log(`Error: ${error}`);
 	}
 
 	let gettingItem = browser.storage.local.get();
